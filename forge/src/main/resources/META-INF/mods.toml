@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[39,)"
-issueTrackerURL = "https://github.com/MoonflowerTeam/${repo}/issues"
+issueTrackerURL = "https://github.com/Chalkboard-Mods/smashing/issues"
 license = "GPLv3"
 
 [[mods]]

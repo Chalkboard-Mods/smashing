@@ -1,10 +1,11 @@
 package chalkboardmods.smashing.common.block;
 
+import chalkboardmods.smashing.core.other.SmashingSoundTypes;
+import chalkboardmods.smashing.core.registry.SmashingBlocks;
 import chalkboardmods.smashing.core.registry.SmashingSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -13,7 +14,9 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -30,7 +33,7 @@ public class PotBlock extends FallingBlock {
 
     @Override
     public SoundType getSoundType(BlockState state) {
-        return SmashingSounds.POT;
+        return SmashingSoundTypes.POT.get();
     }
 
     @Override
