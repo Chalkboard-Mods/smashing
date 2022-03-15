@@ -1,5 +1,9 @@
 {
   "block.smashing.common_pot": "Common Pot",
   "block.smashing.tall_common_pot": "Tall Common Pot",
-  "block.smashing.large_common_pot": "Large Common Pot"
+  "block.smashing.large_common_pot": "Large Common Pot",
+
+  "item.smashing.ceramic_shard": "Ceramic Shard",
+
+  "subtitles.smashing.pot.smash": "Pot shatters"
 }

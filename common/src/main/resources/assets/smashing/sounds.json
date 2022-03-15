@@ -1,0 +1,20 @@
+{
+  "block.ceramics.shatter": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "smashing:block/smashing_1"
+      },
+      {
+        "name": "smashing:block/smashing_2"
+      },
+      {
+        "name": "smashing:block/smashing_3"
+      },
+      {
+        "name": "smashing:block/smashing_4"
+      }
+    ],
+    "subtitle": "subtitles.smashing.pot.smash"
+  }
+}

@@ -2,6 +2,7 @@ package chalkboardmods.smashing.core;
 
 import chalkboardmods.smashing.core.registry.SmashingBlocks;
 import chalkboardmods.smashing.core.registry.SmashingItems;
+import chalkboardmods.smashing.core.registry.SmashingSounds;
 import gg.moonflower.pollen.api.platform.Platform;
 
 public class Smashing {
@@ -23,6 +24,7 @@ public class Smashing {
     public static void onCommonInit() {
         SmashingBlocks.BLOCKS.register(PLATFORM);
         SmashingItems.ITEMS.register(PLATFORM);
+        SmashingSounds.SOUNDS.register(PLATFORM);
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx) {

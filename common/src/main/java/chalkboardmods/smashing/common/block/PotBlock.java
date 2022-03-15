@@ -1,5 +1,6 @@
 package chalkboardmods.smashing.common.block;
 
+import chalkboardmods.smashing.core.registry.SmashingSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -12,9 +13,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -30,23 +29,19 @@ public class PotBlock extends FallingBlock {
     }
 
     @Override
+    public SoundType getSoundType(BlockState state) {
+        return SmashingSounds.POT;
+    }
+
+    @Override
     public void onProjectileHit(Level level, BlockState state, BlockHitResult hit, Projectile projectile) {
         BlockPos pos = hit.getBlockPos();
         Random random = new Random();
         level.removeBlock(pos, false);
         this.spawnDestroyParticles(level, null, pos, state);
+        dropResources(state, level, pos);
         level.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.035D, 0.0D);
-        level.playSound((Player) null, pos, SoundEvents.GLASS_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
-    }
-
-    @Override
-    protected void popExperience(ServerLevel level, BlockPos pos, int amount) {
-        Random random = new Random();
-        int i = 0;
-        if (random.nextBoolean()) {
-            i = 1;
-        }
-        super.popExperience(level, pos, i);
+        level.playSound((Player) null, pos, SmashingSounds.POT_SMASH.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
     }
 
     @Override
@@ -56,14 +51,20 @@ public class PotBlock extends FallingBlock {
         if (!level.getBlockState(pos.below()).is(BlockTags.WOOL)) {
             level.removeBlock(pos, false);
             this.spawnDestroyParticles(level, null, pos, blockState);
+            dropResources(blockState, level, pos);
             level.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.035D, 0.0D);
-            level.playSound((Player) null, pos, SoundEvents.GLASS_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
+            level.playSound((Player) null, pos, SmashingSounds.POT_SMASH.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
         }
     }
 
     @Override
     public void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack) {
-        super.spawnAfterBreak(state, level, pos, stack);
+        Random random = new Random();
+        int i = 0;
+        if (random.nextBoolean()) {
+            i = random.nextInt(5);
+        }
+        super.popExperience(level, pos, i);
     }
 
     public static final VoxelShape SHAPE = Shapes.join(Shapes.join(Block.box(4, 7, 4, 12, 9, 12), Block.box(5, 6, 5, 11, 7, 11), BooleanOp.OR), Block.box(4, 0, 4, 12, 6, 12), BooleanOp.OR);
