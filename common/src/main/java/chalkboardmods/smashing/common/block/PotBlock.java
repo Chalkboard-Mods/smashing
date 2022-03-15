@@ -2,6 +2,7 @@ package chalkboardmods.smashing.common.block;
 
 import chalkboardmods.smashing.core.other.SmashingSoundTypes;
 import chalkboardmods.smashing.core.registry.SmashingBlocks;
+import chalkboardmods.smashing.core.registry.SmashingItems;
 import chalkboardmods.smashing.core.registry.SmashingSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -11,6 +12,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -30,7 +32,7 @@ public class PotBlock extends FallingBlock {
     public PotBlock(Properties properties) {
         super(properties);
     }
-
+    
     @Override
     public SoundType getSoundType(BlockState state) {
         return SmashingSoundTypes.POT.get();
@@ -52,10 +54,10 @@ public class PotBlock extends FallingBlock {
         Random random = new Random();
 
         if (!level.getBlockState(pos.below()).is(BlockTags.WOOL)) {
+            level.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.035D, 0.0D);
             level.removeBlock(pos, false);
             this.spawnDestroyParticles(level, null, pos, blockState);
             dropResources(blockState, level, pos);
-            level.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.035D, 0.0D);
             level.playSound((Player) null, pos, SmashingSounds.POT_SMASH.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
         }
     }
