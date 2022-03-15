@@ -1,8 +1,8 @@
 package chalkboardmods.smashing.core.forge.other;
 
 import chalkboardmods.smashing.core.Smashing;
-import chalkboardmods.smashing.core.registry.SmashingFeatures;
-import net.minecraft.resources.ResourceLocation;
+import chalkboardmods.smashing.core.forge.registry.ForgeFeatures;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -13,9 +13,10 @@ import net.minecraftforge.fml.common.Mod;
 public class ForgeGeneration {
     @SubscribeEvent
     public static void onBiomeLoad(BiomeLoadingEvent event) {
-        ResourceLocation biome = event.getName();
         BiomeGenerationSettingsBuilder generation = event.getGeneration();
 
-        generation.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, SmashingFeatures.Placed.COMMON);
+        if (event.getCategory() != Biome.BiomeCategory.NETHER && event.getCategory() != Biome.BiomeCategory.THEEND && event.getCategory() != Biome.BiomeCategory.NONE) {
+            generation.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ForgeFeatures.Placed.COMMON);
+        }
     }
 }
