@@ -1,3 +1,6 @@
 {
-    "parent": "smashing:block/common_pot",
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "smashing:item/common_pot"
+    }
 }
