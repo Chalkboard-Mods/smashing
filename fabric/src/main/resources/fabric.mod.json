@@ -8,9 +8,10 @@
   "contributors": [ "LlamaMan133", "MiteBeMana"],
   "contact": {
     "homepage": "https://www.moonflower.gg",
-	"issues": "https://github.com/MoonflowerTeam/${repo}/issues",
-    "sources": "https://github.com/MoonflowerTeam/${repo}/"
+	"issues": "https://github.com/Chalkboard-Mods/smashing/issues",
+    "sources": "https://github.com/Chalkboard-Mods/smashing"
   },
+  "icon": "logo.png",
   "license": "GPLv3",
   "environment": "*",
   "entrypoints": {

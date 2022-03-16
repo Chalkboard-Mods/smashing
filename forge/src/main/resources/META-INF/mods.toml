@@ -12,7 +12,7 @@ credits = "Llamaman133, MiteBeMana"
 description = "A mod inspired by Terraria's pots, adding pots that drop common loot that can make the early-game more rewarding."
 displayURL = "https://www.moonflower.gg"
 #updateJSONURL = ""
-#logoFile = ""
+logoFile = "logo.png"
 
 [[dependencies.${id}]]
 modId = "forge"
@@ -31,6 +31,6 @@ side = "BOTH"
 [[dependencies.${id}]]
 modId = "pollen"
 mandatory = true
-versionRange = "[1.0.0,)"
+versionRange = "[1.1.0,)"
 ordering = "BEFORE"
 side = "BOTH"
