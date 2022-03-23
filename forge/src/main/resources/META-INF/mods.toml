@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[39,)"
 issueTrackerURL = "https://github.com/Chalkboard-Mods/smashing/issues"
-license = "GPLv3"
+license = "LGPL-3.0"
 
 [[mods]]
 modId = "${id}"
