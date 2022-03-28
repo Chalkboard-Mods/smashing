@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -22,13 +23,16 @@ import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConf
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
 
+import java.util.List;
+
 public class FabricGeneration {
     public static ConfiguredFeature<?,?> COMMON_CF;
     public static PlacedFeature COMMON_PF;
 
     private static final BlockPredicate POT_PREDICATE = BlockPredicate.allOf(
             BlockPredicate.ONLY_IN_AIR_PREDICATE,
-            BlockPredicate.solid(BlockPos.ZERO.below())
+            BlockPredicate.solid(BlockPos.ZERO.below()),
+            BlockPredicate.not(BlockPredicate.matchesBlocks(List.of(Blocks.POINTED_DRIPSTONE), BlockPos.ZERO.below()))
     );
 
     public static final WeightedStateProvider COMMON = new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>().add(SmashingBlocks.COMMON_POT.get().defaultBlockState(), 3).add(SmashingBlocks.LARGE_COMMON_POT.get().defaultBlockState(), 1).add(SmashingBlocks.TALL_COMMON_POT.get().defaultBlockState(), 1));
